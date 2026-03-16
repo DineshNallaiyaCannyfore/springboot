@@ -16,7 +16,7 @@ public class Employee {
     @Column(name = "employee_salary")
     private Double employeeSalary;
 
-    // Default constructor
+    // Default constructor.
     public Employee() {
     }
 
