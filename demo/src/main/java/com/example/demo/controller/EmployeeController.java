@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.entity.Employee;
+import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,9 +19,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/employee")
-    public Employee saveEmployee(@RequestBody Employee employee) {
-        log.info("User created successfully: {}", employee);
-        return employeeService.saveEmployee(employee);
+    public Employee createEmployee(@Valid @RequestBody EmployeeDTO dto) {
+
+        Employee employee = new Employee();
+        employee.setEmployeeName(dto.getEmployeeName());
+        employee.setEmployeeSalary(dto.getEmployeeSalary());
+
+        return repository.save(employee);
     }
 
     @GetMapping("/employee")
