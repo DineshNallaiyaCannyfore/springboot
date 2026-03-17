@@ -25,7 +25,7 @@ public class EmployeeController {
         employee.setEmployeeName(dto.getEmployeeName());
         employee.setEmployeeSalary(dto.getEmployeeSalary());
 
-        return repository.save(employee);
+        return employeeService.saveEmployee(employee);
     }
 
     @GetMapping("/employee")
